@@ -3,7 +3,7 @@
 ### Clone o projeto
 
 ```
-https://github.com/gabriel-torres-brum/ShepHerd.git
+git clone https://github.com/gabriel-torres-brum/ShepHerd.git
 ```
 
 ## Instale o Docker e continue as etapas abaixo
@@ -20,10 +20,9 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-### (Opcional)
+### Adicione o alias 'sail' no seu terminal padrão (Opcional)
 
 ```
-// Adicione o alias 'sail' no seu terminal padrão
 echo "alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'" >> ~/.bashrc
 ```
 
