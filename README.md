@@ -31,7 +31,9 @@ echo "alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'" >> ~/.bashr
 ```
 sail up -d
 ```
-#### ou
+
+ou
+
 ```
 ./vendor/bin/sail up -d
 ```
