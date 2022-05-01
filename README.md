@@ -29,7 +29,11 @@ echo "alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'" >> ~/.bashr
 ### Suba o projeto no Docker com o sail
 
 ```
-sail up -d /* ou */ ./vendor/bin/sail up -d
+sail up -d
+```
+#### ou
+```
+./vendor/bin/sail up -d
 ```
 
 ### Instale as dependências node com o npm
