@@ -9,7 +9,7 @@ git clone https://github.com/gabriel-torres-brum/ShepHerd.git
 ## Instale o Docker e continue as etapas abaixo
 
 
-### Rode esse comando para instalar as dependências via 
+### Rode esse comando para instalar as dependências com o Docker
 
 ```
 docker run --rm \
