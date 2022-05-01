@@ -4,7 +4,6 @@
 
 ```
 https://github.com/gabriel-torres-brum/ShepHerd.git
-
 ```
 
 ## Instale o Docker e continue as etapas abaixo
@@ -26,14 +25,12 @@ docker run --rm \
 ```
 // Adicione o alias 'sail' no seu terminal padrão
 echo "alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'" >> ~/.bashrc
-
 ```
 
 ### Suba o projeto no Docker com o sail
 
 ```
 sail up -d /* ou */ ./vendor/bin/sail up -d
-
 ```
 
 ### Instale as dependências node com o npm
@@ -42,7 +39,6 @@ sail up -d /* ou */ ./vendor/bin/sail up -d
 sail npm install
 
 sail npm run watch
-
 ```
 
 ### Pronto! Agora é só acessar esse link no navegador
