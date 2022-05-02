@@ -9,14 +9,16 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-slate-500 overflow-hidden">
     @auth
-        @include('layouts.header', [
-            'routeName' => request()->route()->getName(),
-        ])
+        @include('layouts.header', [ 'route' => request()->route()->getName()])
+        <x-aside />
     @endauth
-    @yield('content')
+    @guest
+      @yield('content')    
+    @endguest
     <script type="module" src="{{ asset('js/app.js') }}"></script>
+
 </body>
 
 </html>

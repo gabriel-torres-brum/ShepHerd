@@ -1,17 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ {
-    AuthController,
-    HomeController
+use App\Http\Controllers\{
+    AuthController
+};
+use App\Http\Controllers\app\{
+    DashboardController
 };
 
-Route::get('login', function () {
+Route::fallback(function () {
     return redirect()->route('login');
 });
-
 Route::middleware('auth')->group(function () {
-    Route::get('home', [HomeController::class, 'index'])->name('app.home.index');
+    Route::prefix('app')->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('app.dashboard');
+    });
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
