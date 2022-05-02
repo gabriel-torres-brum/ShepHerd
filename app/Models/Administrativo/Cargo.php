@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Administrativo;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ad_Pessoa extends Model
+class Cargo extends Model
 {
     use HasFactory;
 }

@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    AuthController
-};
-use App\Http\Controllers\app\{
-    DashboardController
+    AuthController,
+    app\DashboardController,
+    app\Administrativo\PessoasController,
 };
 
 Route::fallback(function () {
@@ -14,6 +13,9 @@ Route::fallback(function () {
 Route::middleware('auth')->group(function () {
     Route::prefix('app')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('app.dashboard');
+        Route::prefix('administrativo')->group(function () {
+            Route::get('pessoas', [PessoasController::class, 'list'])->name('app.administrativo.pessoas');
+        });
     });
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
