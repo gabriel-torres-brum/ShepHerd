@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html class="dark" lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -11,11 +11,11 @@
 
 <body class="bg-slate-500 overflow-hidden">
     @auth
-        @include('layouts.header', [ 'route' => request()->route()->getName()])
-        <x-aside />
+        @include('app.layout.includes.header')
+        @include('app.layout.includes.aside');
     @endauth
     @guest
-      @yield('content')    
+      @yield('content')
     @endguest
     <script type="module" src="{{ asset('js/app.js') }}"></script>
 

@@ -5,11 +5,7 @@ namespace App\Models\Administrativo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cargo extends Model
+class Documento extends Model
 {
-    protected $table = 'ad_cargos';
-
-    protected $fillable = [
-        'cargo'
-    ];
+    use HasFactory;
 }

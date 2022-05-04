@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fn_caixa', function (Blueprint $table) {
+        Schema::create('ad_cargos', function (Blueprint $table) {
             $table->id();
+            $table->string('cargo');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fn_caixa');
+        Schema::dropIfExists('ad_cargos');
     }
 };

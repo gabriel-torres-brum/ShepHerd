@@ -11,7 +11,7 @@
         </label>
         <div class="collapse-content">
             <ul class="font-medium">
-                <li><a>Pessoas</a></li>
+                <li><a href="{{ route('app.administrativo.pessoas.list') }}">Pessoas</a></li>
                 <li><a>Programação</a></li>
             </ul>
         </div>

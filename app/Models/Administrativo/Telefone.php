@@ -5,11 +5,12 @@ namespace App\Models\Administrativo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cargo extends Model
+class Telefone extends Model
 {
-    protected $table = 'ad_cargos';
+    protected $table = "ad_telefones";
 
     protected $fillable = [
-        'cargo'
+        'ddd',
+        'numero'
     ];
 }

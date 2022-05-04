@@ -30,7 +30,7 @@ class RegisterValidateRequest extends FormRequest
             "email.required" => "Digite um e-mail válido",
             "email.email" => "Digite um e-mail válido",
             "email.max" => "Digite um e-mail válido",
-            "email.unique" => "Usuário ou senha inválidos",
+            "email.unique" => "Usuário já cadastrado",
             "password.required" => "A senha é obrigatória",
             "password.min" => "A senha deve ter, no mínimo, 8 caracteres",
             "password.confirmed" => "Confirmação de senha inválida",

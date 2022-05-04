@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ad_pessoas_telefones', function (Blueprint $table) {
+        Schema::create('ad_pessoas_documentos', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\ad_Pessoa::class);
-            $table->string('ddd');
             $table->string('numero');
-            $table->timestamps();
+            $table->unsignedBigInteger('pessoa_id');
+            $table->unsignedBigInteger('documento_id');
+
+            $table->foreign('pessoa_id')->references('id')->on('ad_pessoas');
+            $table->foreign('documento_id')->references('id')->on('ad_documentos');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ad_pessoas_telefones');
+        Schema::dropIfExists('ad_pessoas_documentos');
     }
 };

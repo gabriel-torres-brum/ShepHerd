@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ad_cargos', function (Blueprint $table) {
+        Schema::create('ad_telefones', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\ad_Pessoa::class);
-            $table->string('cargo');
+            $table->string('descricao')->nullable();
+            $table->string('ddd');
+            $table->string('numero')->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ad_cargos');
+        Schema::dropIfExists('ad_telefones');
     }
 };

@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class PessoaTelefone extends Model
 {
-    use HasFactory;
+    public $timestamps = false;
+    
+    protected $table = 'ad_pessoas_telefones';
+
+    protected $fillable = [
+        'pessoa_id',
+        'telefone_id',
+    ];
 }

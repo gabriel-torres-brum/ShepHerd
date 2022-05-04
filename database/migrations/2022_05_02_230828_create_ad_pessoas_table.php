@@ -15,16 +15,20 @@ return new class extends Migration
     {
         Schema::create('ad_pessoas', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\ad_Cargo::class);
             $table->string('nome');
-            $table->string('data_nascimento');
-            $table->string('nome_pai');
+            $table->date('data_nascimento');
+            $table->string('nome_pai')->default("Não informado");
             $table->string('nome_mae');
-            $table->string('estado_civil');
-            $table->string('igreja_origem');
-            $table->string('dizimista');
-            $table->string('data_batismo')->default(null);
+            $table->string('igreja_origem')->nullable();
+            $table->boolean('batizado')->default(false);
+            $table->boolean('dizimista')->default(false);
+            $table->date('data_batismo')->nullable();
+            $table->unsignedBigInteger('cargo_id');
+            $table->unsignedBigInteger('estado_civil_id');
             $table->timestamps();
+            
+            $table->foreign('cargo_id')->references('id')->on('ad_cargos');
+            $table->foreign('estado_civil_id')->references('id')->on('ad_estado_civil');
         });
     }
 

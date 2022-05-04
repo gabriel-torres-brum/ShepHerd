@@ -7,24 +7,27 @@ use App\Http\Controllers\{
     app\Administrativo\PessoasController,
 };
 
-Route::fallback(function () {
-    return redirect()->route('login');
-});
+Route::fallback(fn () => redirect()->route('login'));
+
+/* Protected routes */
 Route::middleware('auth')->group(function () {
-    Route::prefix('app')->group(function () {
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('app.dashboard');
-        Route::prefix('administrativo')->group(function () {
-            Route::get('pessoas', [PessoasController::class, 'list'])->name('app.administrativo.pessoas');
-        });
-    });
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    /* Dashboard */
+    // Route::get('dashboard', [DashboardController::class, 'index'])->name('app.dashboard');
+    Route::get('app/dashboard', fn () => redirect()->route('app.administrativo.pessoas.list'));
+    /* Administrativo */
+    Route::get('app/administrativo/pessoas', [PessoasController::class, 'list'])->name('app.administrativo.pessoas.list');
 });
 
+/* Not protected routes */
 Route::middleware('guest')->group(function () {
-    Route::controller(AuthController::class)->group(function () {
-        Route::get('/', 'login')->name('login');
-        Route::post('/', 'loginHandle')->name('login.handle');
-        Route::get('register', 'register')->name('register');
-        Route::post('register', 'registerHandle')->name('register.handle');
-    });
+
+    /* Login */
+    Route::get('/', [AuthController::class, 'login'])->name('login');
+    Route::post('/', [AuthController::class, 'loginHandle'])->name('login.handle');
+    /* Register */
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'registerHandle'])->name('register.handle');
+    /* Logout */
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });

@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fn_lancamentos', function (Blueprint $table) {
+        Schema::create('ad_documentos', function (Blueprint $table) {
             $table->id();
+            $table->string('documento');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fn_lancamentos');
+        Schema::dropIfExists('ad_documentos');
     }
 };

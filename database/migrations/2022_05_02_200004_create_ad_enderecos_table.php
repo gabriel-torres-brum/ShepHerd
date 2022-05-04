@@ -13,8 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fn_relatorios', function (Blueprint $table) {
+        Schema::create('ad_enderecos', function (Blueprint $table) {
             $table->id();
+            $table->string('descricao');
+            $table->string('logradouro');
+            $table->bigInteger('numero')->nullable();
+            $table->string('complemento')->nullable();
+            $table->string('bairro');
+            $table->string('municipio');
+            $table->string('estado');
+            $table->string('cep');
             $table->timestamps();
         });
     }
@@ -26,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fn_relatorios');
+        Schema::dropIfExists('ad_enderecos');
     }
 };
