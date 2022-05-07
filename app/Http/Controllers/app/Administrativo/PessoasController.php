@@ -16,7 +16,7 @@ class PessoasController extends Controller
             if ($pesquisa) {
                 $query->where('nome', 'LIKE', "%{$pesquisa}%");
             }
-        })->paginate(1);
+        })->paginate(3);
         return view('app.Administrativo.Listagem.listagem-pessoas', compact('pessoas'));
     }
 }

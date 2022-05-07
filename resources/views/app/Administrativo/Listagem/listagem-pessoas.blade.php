@@ -22,7 +22,7 @@
         </form>
     </div>
     @if ((new \Jenssegers\Agent\Agent())->isDesktop())
-        <div class="rounded-lg hidden md:block">
+        <div class="rounded-lg hidden md:flex overflow-auto">
             <table class="w-full">
                 <thead class="bg-primary text-primary-content border-b border-base-content">
                     <tr>
@@ -79,7 +79,7 @@
             </div>
         </div>
     @else
-        <div class="z-30 flex flex-col space-y-5 md:hidden leading-4 overflow-y-scroll">
+        <div class="flex flex-col space-y-5 md:hidden leading-4 overflow-y-scroll">
             {{ $pessoas->appends([
                     'pesquisa' => request()->get('pesquisa', ''),
                 ])->links('pagination::tailwind') }}
@@ -108,7 +108,7 @@
                             </div>
                             <div class="flex items-center">
                                 <label for="modal-question" 
-                                    class="btn modal-button grid place-items-center p-2 text-xs font-semibold uppercase tracking-wider rounded-lg bg-error text-error-content border border-error-content hover:opacity-90 hover:bg-error">
+                                    class="modal-button grid place-items-center p-2 text-xs font-semibold uppercase tracking-wider rounded-lg bg-error text-error-content hover:opacity-90">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"

@@ -23,7 +23,7 @@
     "dependencies": {
         "cleave.js": "^1.6.0",
         "daisyui": "^2.14.3",
-        "flowbite": "^1.4.4",
+        "flowbite": "^1.4.5",
         "js-brasil": "^2.5.3",
         "theme-change": "^2.0.2"
     }

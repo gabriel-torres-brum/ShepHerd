@@ -9,10 +9,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="text-base-content overflow-hidden">
+<body class="text-base-content h-screen w-full bg-base-100 relative flex flex-col overflow-hidden">
     @auth
+        <!-- Header -->
         @include('app.layout.includes.header')
         @include('app.layout.includes.aside');
+
     @endauth
     @guest
         @yield('content')
@@ -22,7 +24,7 @@
     <input type="checkbox" id="modal-question" class="modal-toggle">
     <label for="modal-question" class="modal modal-bottom sm:modal-middle cursor-pointer">
         <form method="POST" action="!#" class="modal-box text-center">
-            <h3 id="modal-question-title"class="font-bold text-lg">Quer mesmo excluir $nome do sistema?</h3>
+            <h3 id="modal-question-title" class="font-bold text-lg">Quer mesmo excluir $nome do sistema?</h3>
             <p class="py-4 ">Essa ação não poderá ser desfeita.</p>
             <div class="flex justify-between modal-action">
                 <label for="modal-question" class="btn btn-outline" type="submit">Cancelar</label>

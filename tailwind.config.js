@@ -10,14 +10,11 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require("daisyui")
+    require("daisyui"),
+    require('flowbite/plugin')
   ],
   daisyui: {
-    themes: [
-      "corporate",
-      "business"
-    ],
-    darkTheme: "business",
+    themes: ["light", "dark", "corporate", "business", "emerald", "dracula"],
   },
 
 }
