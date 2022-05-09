@@ -23,10 +23,11 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', fn () => redirect()->route('administrativo.pessoas.list'));
 
     /* Administrativo */
+    Route::get('administrativo/pessoas', fn () => redirect()->route('administrativo.pessoas.list'));
     Route::get('administrativo/pessoas/listar', [PessoasController::class, 'list'])->name('administrativo.pessoas.list');
     Route::get('administrativo/pessoas/criar',  [PessoasController::class, 'create'])->name('administrativo.pessoas.create');
     Route::put('administrativo/pessoas/criar',  [PessoasController::class, 'handleCreate'])->name('administrativo.pessoas.handleCreate');
-    Route::delete('administrativo/pessoas/excluir/{pessoa:id}',  [PessoasController::class, 'delete'])->name('administrativo.pessoas.delete');
+    Route::delete('administrativo/pessoas/excluir',  [PessoasController::class, 'delete'])->name('administrativo.pessoas.delete');
 });
 
 /* Logout */

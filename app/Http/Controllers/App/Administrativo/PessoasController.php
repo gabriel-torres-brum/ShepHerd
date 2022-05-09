@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Administrativo\Pessoa;
 use App\Models\Administrativo\Cargo;
 use App\Models\Administrativo\EstadoCivil;
-
+use Illuminate\Support\Facades\Auth;
 
 class PessoasController extends Controller
 {
@@ -39,7 +39,8 @@ class PessoasController extends Controller
     
     public function delete(Request $request)
     {
-        if (Pessoa::where('id', $request->id)->delete()) {
+        if (! Auth::user()->admin) return redirect()->back()->withErrors('Não permitido');
+        if (Pessoa::find($request->id)->delete()) {
             return redirect()->route('administrativo.pessoas.list');
         } else {
             return redirect()->back()->withErrors('Erro ao excluir pessoa');
