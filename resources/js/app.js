@@ -1,6 +1,7 @@
 require("./bootstrap");
-import 'flowbite';
-import { themeChange } from 'theme-change'
+import { themeChange } from 'theme-change';
+import 'tw-elements';
+
 themeChange();
 
 // document.getElementById('toggle-theme').addEventListener('change',
