@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Jenssegers\Agent\AgentServiceProvider::class,
+        Riverskies\Laravel\MobileDetect\MobileDetectServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -209,7 +209,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'MobileDetect' => Riverskies\Laravel\MobileDetect\Facades\MobileDetect::class
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

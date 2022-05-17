@@ -25,10 +25,10 @@ class AuthController extends Controller
 
    public function login()
    {
-      return view('app.Auth');
+      return view('app.login');
    }
 
-   public function loginHandle(LoginValidateRequest $request)
+   public function handleLogin(LoginValidateRequest $request)
    {
       $data = $request->only('email', 'password');
       if (Auth::attempt($data)) {
@@ -41,10 +41,10 @@ class AuthController extends Controller
 
    public function register()
    {
-      return view('app.Auth');
+      return view('app.register');
    }
 
-   public function registerHandle(RegisterValidateRequest $request)
+   public function handleRegister(RegisterValidateRequest $request)
    {
       if (!$this->model->createUser($request->all())) {
          return redirect()->back()->withErrors("Ocorreu um erro desconhecido, tente novamente mais tarde");

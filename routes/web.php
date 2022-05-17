@@ -11,10 +11,10 @@ use App\Http\Controllers\App\Administrativo\PessoasController;
 Route::middleware('guest')->group(function () {
     /* Login */
     Route::get('',  [AuthController::class, 'login'])->name('login');
-    Route::post('', [AuthController::class, 'loginHandle'])->name('login.handle');
+    Route::post('', [AuthController::class, 'handleLogin'])->name('login.handle');
     /* Register */
     Route::get('register', [AuthController::class, 'register'])->name('register');
-    Route::put('register', [AuthController::class, 'registerHandle'])->name('register.handle');
+    Route::put('register', [AuthController::class, 'handleRegister'])->name('register.handle');
 });
 
 /* Protected routes */
@@ -26,7 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::get('administrativo/pessoas', fn () => redirect()->route('administrativo.pessoas.list'));
     Route::get('administrativo/pessoas/listar', [PessoasController::class, 'list'])->name('administrativo.pessoas.list');
     Route::get('administrativo/pessoas/criar',  [PessoasController::class, 'create'])->name('administrativo.pessoas.create');
-    Route::put('administrativo/pessoas/criar',  [PessoasController::class, 'handleCreate'])->name('administrativo.pessoas.handleCreate');
+    Route::get('administrativo/pessoas/editar/{id}',  [PessoasController::class, 'edit'])->name('administrativo.pessoas.edit');
+    Route::put('administrativo/pessoas/update',  [PessoasController::class, 'update'])->name('administrativo.pessoas.update');
     Route::delete('administrativo/pessoas/excluir',  [PessoasController::class, 'delete'])->name('administrativo.pessoas.delete');
 });
 

@@ -1,4 +1,4 @@
-@extends('layout.Master')
+@extends('layout.common')
 
 @section('title', 'Listagem de Pessoas')
 
@@ -21,9 +21,9 @@
     </form>
     @endif
 </div>
-@if ((new \Jenssegers\Agent\Agent())->isDesktop())
-<div class="rounded-md hidden md:flex py-10">
-    <table class="table table-zebra w-full border border-base-content border-opacity-25 rounded-lg">
+@desktop
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="table table-zebra w-full">
         <thead>
             <tr>
                 <th class="p-6 text-sm font-semibold tracking-wide text-left truncate">Nome</th>
@@ -43,7 +43,7 @@
             </tr>
             @else
             @foreach ($pessoas as $key => $pessoa)
-            <tr class="bg-secondary text-base-content border-b border-base-200">
+            <tr class="bg-secondary text-base-content">
                 <td class="p-6 text-sm font-semibold whitespace-nowrap truncate">
                     {{ $pessoa->nome }}
                 </td>
@@ -67,7 +67,7 @@
                     </p>
                 </td>
                 <td class="p-2 text-sm text-secondary-content whitespace-nowrap">
-                    <div class="rounded-md font-semibold dropdown dropdown-end">
+                    <div class="rounded-md font-semibold dropdown">
                         <label tabindex="0" class="btn btn-square btn-ghost text-base-content">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -75,22 +75,16 @@
                                     d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                             </svg>
                         </label>
-                        <ul class="dropdown-content menu bg-base-200 text-base-content border border-base-content border-opacity-40 w-56 p-2 mt-3 rounded">
+                        <ul
+                            class="dropdown-content menu bg-base-200 text-base-content border border-base-content border-opacity-40 w-56 p-2 mt-3 rounded">
                             <li>
-                                <a>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                                    </svg>
-                                    Usuários
-                                </a>
+                                <a href="{{ route('administrativo.pessoas.edit', $pessoa->id) }}">Editar</a>
                             </li>
                             <li>
                                 <form method="POST" action="{{ route('administrativo.pessoas.delete') }}">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $pessoa->id }}" >
+                                    <input type="hidden" name="id" value="{{ $pessoa->id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -115,8 +109,8 @@
         ])->links('pagination::tailwind') }}
     </div>
 </div>
-@else
-<div class="flex flex-col space-y-5 md:hidden leading-4 overflow-y-scroll">
+@elsedesktop
+<div class="flex flex-col space-y-5 md:hidden leading-4 overflow-y-auto">
     @if (is_null($pessoas->first()))
     <div class="grid place-items-center w-full bg-base-content text-base-200 my-2 mt-6 rounded">
         <div class="text-sm font-semibold text-center p-6">
@@ -128,7 +122,7 @@
     'pesquisa' => request()->get('pesquisa', ''),
     ])->links('pagination::tailwind') }}
     @foreach ($pessoas as $key => $pessoa)
-    <section class="bg-secondary text-secondary-content rounded-lg shadow">
+    <section class="bg-base-100 text-base-content rounded-lg shadow">
         <div class="space-y-1.5 p-4">
             <div class="flex space-x-2 items-center py-2">
                 <p class="font-bold truncate">{{ $pessoa->nome }}</p>
@@ -136,16 +130,16 @@
             <hr class="border rounded-full border-primary-content" />
             <div class="flex justify-between font-semibold py-2">
                 <div class="flex flex-col justify-between space-y-1">
-                    <div class="flex text-secondary-content justify-start font-bold text-xs rounded">
+                    <div class="flex text-base-content justify-start font-bold text-xs rounded">
                         <p class="{{ $pessoa->dizimista || 'text-error' }}">
                             {{ $pessoa->dizimista ? 'Dizimista' : 'Não Dizimista' }}
                         </p>
                     </div>
-                    {{-- <div class="flex text-secondary-content justify-start font-bold text-xs rounded">
+                    {{-- <div class="flex text-base-content justify-start font-bold text-xs rounded">
                         <p class="{{ $pessoa->batizado || 'text-error' }}">
                             {{ $pessoa->batizado ? 'Batizado(a)' : 'Não Batizado(a)' }}</p>
                     </div>
-                    <div class="flex text-secondary-content justify-start font-bold text-xs rounded">
+                    <div class="flex text-base-content justify-start font-bold text-xs rounded">
                         <p>
                             {{ $pessoa->data_nascimento->age }} anos </p>
                     </div> --}}
@@ -177,10 +171,15 @@
     @endforeach
     @endif
 </div>
-@endif
-<div class="flex justify-between w-full">
+@enddesktop
+<div class="flex justify-between w-full mt-6">
     <a href="{{ route("administrativo.pessoas.create") }}" class="btn btn-primary w-full md:w-auto">
-        Adicionar
+        Incluir
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                clip-rule="evenodd" />
+        </svg>
     </a>
 </div>
 @endsection
